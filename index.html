@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--		<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet"> -->
+		<title></title>
+		<style>
+			#pokedex {
+				display: grid;
+				grid-template-columns: repeat(3, auto);
+				grid-template-rows: repeat(3, auto);
+				grid-template-areas:
+					". title ."
+					". form ."
+					". list .";
+				grid-gap: 20px;
+			}
+			h1 {
+				grid-area: title;
+				margin: 30px auto;
+				font-family: 'Bangers',cursive;
+				text-shadow:
+					-1px -1px 0 #000,
+					-1px 1px 0 #000,
+					1px -1px 0 #000,
+					1px 1px 0 #000;
+				color: yellow;
+				font-size: 10vw;
+				letter-spacing: -1.5vw;
+				font-style: italic;
+			}
+			input {
+				grid-area: form;
+			}
+			#liste {
+				grid-area: list;
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				margin: 0px 20px 0px 15px;
+				max-height: 300px;
+				overflow: auto;
+			}
+			#liste div {
+				display: grid;
+				grid-template-columns: 10% auto 200px;
+				grid-template-rows: auto;
+				grid-template-areas:
+					"image name type";
+			}
+			#liste * {
+				font-size: 20px;
+			}
+			#liste #name {
+				grid-area: name;
+				align-self: center;
+			}
+			#liste #type {
+				grid-area: type;
+				align-self: center;
+				padding-right: 5px;
+			}
+			#liste img {
+				grid-area: image;
+				height: 40px;
+			}
+			@media screen and (max-width: 600px) {
+				#liste div {
+					grid-template-columns: 50px auto;
+					grid-template-rows: 15px 15px;
+					grid-template-areas:
+						"image name"
+						"image type";
+				}
+				#liste * {
+					font-size: 13px;
+				}
+				#liste > div {
+					margin: 5px 0px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pokedex">
+			<h1>pokedex</h1>
+			<input id="search" type="text" placeholder="recherche un pokemon par nom ou par type !"/>
+			<div id="liste"></div>
+		</div>
+
+		<script>
+
+			const list = document.getElementById("liste");
+			const search = document.getElementById("search");
+			let pokesearch = search.value;
+			search.addEventListener("keyup", compareSearch)
+			const pokedex = []
+			const pokePrint = []
+
+			fetch("pokedex.json")
+				.then(tab => tab.json())
+		//	.then(pokelist => pokedex.push(...pokelist.pokemon));
+				.then(pokelist => pokelist.pokemon.forEach(e => pokedex.push(e)))
+				.then(console.log(pokedex))
+
+			function compareSearch() {
+		//	const pokesearch = new RegExp(search.value, 'gi')
+				pokesearch = search.value.toLowerCase()
+				if(pokesearch !== '')
+		//		return pokedex.filter(pokemon => {
+		//		return pokemon.name.match(pokesearch)
+					pokedex.forEach(pokemon => {
+						if(pokemon.name.toLowerCase().includes(pokesearch)
+		//			|| pokemon.type.find(e=>e.toLowerCase().includes(pokesearch)))
+						||(pokemon.type.join().toLowerCase().includes(pokesearch)))
+							pokePrint.push(pokemon)
+					})
+				printSelection(pokePrint);
+				pokePrint.length = 0
+			}
+
+			function printSelection(name) {
+				let html = ''
+				for(let i of name) {
+					html = html +
+					`<div>
+						<img src="${i.img}">
+						<span id="name">${i.name}</span>
+						<span id="type">type: ${i.type}</span>
+					</div>`
+				}
+				list.innerHTML = html
+			}
+		</script>
+	</body>
+</html>
