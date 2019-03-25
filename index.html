@@ -39,22 +39,22 @@
 				let research = search.value.toLowerCase()
 				let regex = new RegExp(research, 'g')
 				let become = "<span id='red'>" + research + "</span>"
-				// si rien n'est en recherche on affiche tout
+				/* si rien n'est en recherche on affiche tout */
 				printSelection(data)
-				// mais si on cherche qqch on affiche le resultat
+				/* mais si on cherche qqch on affiche le resultat */
 				if(search.value.toLowerCase() !== '') {
-					// parcour toutes les sections par indexAll de data
-					// et pour chacune, objet, parcour les key de l'objet
+					/* parcour toutes les sections par indexAll de data */
+					/* et pour chacune, objet, parcour les key de l'objet */
 					data.forEach((section, indexAll) => Object.keys(section).forEach(key => {
-						// chaque key est un tableau de string, on parcour...
+						/* chaque key est un tableau de string, on parcour... */
 						section[key].forEach((paragraph, index) => {
-							// in case the search pattern is found in a string
-							// replace it by itself surrounded with html balises for highlight
-							// and fill "print" with a copy of the section containing it
+							/* in case the search pattern is found in a string */
+							/* replace it by itself surrounded with html balises for highlight */
+							/* and fill "print" with a copy of the section containing it */
 							if (paragraph.includes(research)) {
 								const change = paragraph.replace(regex, become)
 								const tmp = JSON.parse(JSON.stringify(data[indexAll]))
-								// si cette section existe deja on ne la rajoute pas a toPrint
+								/* si cette section existe deja on ne la rajoute pas a toPrint */
 								if (!(toPrint.some(e => e.title.includes(section.title[0]))))
 									toPrint.push(tmp)
 								toPrint[toPrint.length - 1][key].splice(index, 1, change)
