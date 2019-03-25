@@ -6,7 +6,6 @@
 		<title>actualites | IHCRA</title>
 		<base href="../assets/">
 		<link href="../style.css" type="text/css" rel="stylesheet">
-		<script type="text/javascript" src="../script.js" defer></script>
 		<style>
 			#red {background-color: red;}
 		</style>
@@ -70,15 +69,15 @@
 			function printSelection(affich) {
 				let html = ''
 				for(let i of affich) {
-					html += `<div id="article"><h2 id="title">${i.title[0]}</h2>`
+					html += "<div id='article'><h2 id='title'>" + i.title[0] + "</h2>"
 					if (i.title.length > 1)
 						for(let j = 1; j < i.title.length; j++)
-							html += `<div><h2 id="subtitle">${i.title[j]}</h2>`
+							html += "<div><h2 id='subtitle'>" + i.title[j] + "</h2>"
 					for(j = 0; j < i.content.length; j++)
-						html += `<p id="content">${i.content[j]}</p>`
+						html += "<p id='content'>" + i.content[j] + "</p>"
 					html += "<div id='keybox' class='row right'>"
 					for(j = 0; j < i.keywords.length; j++)
-						html += `<p id="keywords">${i.keywords[j]}</p>`
+						html += "<p id='keywords'>" + i.keywords[j] + "</p>"
 					html += "</div></div>"
 				}
 				list.innerHTML = html
