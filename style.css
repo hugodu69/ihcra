@@ -1,0 +1,389 @@
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+body {
+}
+
+
+/*formatage general de toutes les sections en flex*/
+.column {
+	display: flex;
+	flex-direction: column;
+}
+.column * {
+	margin: auto;
+}
+.row {
+	display: flex;
+	flex-direction: row;
+}
+.row * {
+	margin: auto;
+}
+
+
+/*formatage du texte*/
+h1, h2, h3, p, span, a {
+	font-family: sans-serif;
+	text-transform: uppercase;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	cursor: default;
+}
+a {
+	cursor: pointer;
+}
+#title a {
+	font-size: 50px;
+	font-weight: bold;
+	transform: rotateY(181deg);
+	transition: transform 1s;
+}
+#title a:hover {
+	transform: rotateY(0deg);
+}
+h2 {
+	font-size: 20px;
+	line-height: 1;
+	font-weight: lighter;
+}
+p {
+	font-size: 11px;
+	line-height: 2;
+}
+span {
+	font-size: 13px;
+	letter-spacing: 1.5px;
+	vertical-align: 7%;
+}
+#links a {
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 5;
+}
+#footer a {
+	font-size: 13px;
+	color: rgb(180, 180, 180);
+	line-height: 1.5;
+}
+
+
+/**/
+#intro {
+	width: 40%;
+	margin-top: 130px;
+}
+
+
+/*formatage des 4 liens*/
+#links {
+	margin-top: 160px;
+}
+#links a:nth-child(1) {
+	letter-spacing: 1.0em;
+	margin-right: -1.0em;
+}
+#links a:nth-child(2) {
+	letter-spacing: 1.62em;
+	margin-right: -1.62em;
+}
+#links a:nth-child(3) {
+	letter-spacing: 0.66em;
+	margin-right: -0.66em;
+}
+#links a:hover {
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color: white;
+}
+#links a:nth-child(4) {
+	letter-spacing: 1.3em;
+	margin-right: -1.3em;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color: white;
+}
+#links a:nth-child(4):hover {
+	text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
+	color: white;
+}
+
+
+/*formatage du footer*/
+#footer {
+	margin-top: 200px;
+	margin-bottom: 40px;
+}
+
+/*le calendrier*/
+/*les grids areas*/
+#calendar .lun      {grid-area: lun;}
+#calendar .mar      {grid-area: mar;}
+#calendar .mer      {grid-area: mer;}
+#calendar .jeu      {grid-area: jeu;}
+#calendar .ven      {grid-area: ven;}
+#calendar .sam      {grid-area: sam;}
+#calendar .dim      {grid-area: dim;}
+#calendar .month    {grid-area: month;}
+#calendar .un       {grid-area: un;}
+#calendar .deux     {grid-area: deux;}
+#calendar .trois    {grid-area: trois;}
+#calendar .quatre   {grid-area: quatre;}
+#calendar .cinq     {grid-area: cinq;}
+#calendar .six      {grid-area: six;}
+#calendar .sept     {grid-area: sept;}
+#calendar .huit     {grid-area: huit;}
+#calendar .neuf     {grid-area: neuf;}
+#calendar .dix      {grid-area: dix;}
+#calendar .onze     {grid-area: onze;}
+#calendar .douze    {grid-area: douze;}
+#calendar .treize   {grid-area: treize;}
+#calendar .quatorze {grid-area: quatorze;}
+#calendar .quinze   {grid-area: quinze;}
+#calendar .seize    {grid-area: seize;}
+#calendar .dsept    {grid-area: dsept;}
+#calendar .dhuit    {grid-area: dhuit;}
+#calendar .dneuf    {grid-area: dneuf;}
+#calendar .vingt    {grid-area: vingt;}
+#calendar .vun      {grid-area: vun;}
+#calendar .vdeux    {grid-area: vdeux;}
+#calendar .vtrois   {grid-area: vtrois;}
+#calendar .vquatre  {grid-area: vquatre;}
+#calendar .vcinq    {grid-area: vcinq;}
+#calendar .vsix     {grid-area: vsix;}
+#calendar .vsept    {grid-area: vsept;}
+#calendar .vhuit    {grid-area: vhuit;}
+#calendar .vneuf    {grid-area: vneuf;}
+#calendar .trente   {grid-area: trente;}
+#calendar .tun      {grid-area: tun;}
+/*les grid-containers*/
+/*la box calendar*/
+#calendar {
+	position: relative;
+	width: 300px;
+	height: calc(300px / 7 * 8);
+	margin-top: 100px;
+	display: flex;
+	overflow: hidden;
+}
+/*le slide*/
+#calendar #calendarSlide {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	width: calc(3 * 300px);
+	height: 100%;
+	transition: left 1s;
+}
+/*les jours en position absolute*/
+#calendar #days {
+	position: absolute;
+	top: calc(300px/7);
+	left: 0px;
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	width: 300px;
+	height: calc(300px/7);
+}
+/*les mois*/
+#calendar #may {
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	grid-template-rows: repeat(8, 1fr);
+	grid-template-areas:
+		"month    month   month   month    month    month    month"
+		".        .       .       .        .        .        ."
+		".        un      deux    trois    quatre   cinq     six"
+		"sept     huit    neuf    dix      onze     douze    treize"
+		"quatorze quinze  seize   dsept    dhuit    dneuf    vingt"
+		"vun      vdeux   vtrois  vquatre  vcinq    vsix     vsept"
+		"vhuit    vneuf   trente  tun      .        .        ."
+		".        .       .       .        .        .        .";
+	width: 300px;
+	height: 100%;
+}
+#calendar #june {
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	grid-template-rows: repeat(8, 1fr);
+	grid-template-areas:
+		"month   month   month   month    month   month    month"
+		".       .       .       .        .       .        ."
+		".       .       .       .        un      deux     trois"
+		"quatre  cinq    six     sept     huit    neuf     dix"
+		"onze    douze   treize  quatorze quinze  seize    dsept"
+		"dhuit   dneuf   vingt   vun      vdeux   vtrois   vquatre"
+		"vcinq   vsix    vsept   vhuit    vneuf   trente   ."
+		".       .       .       .        .       .        .";
+	width: 300px;
+	height: 100%;
+}
+#calendar #july {
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	grid-template-rows: repeat(8, 1fr);
+	grid-template-areas:
+		"month   month    month   month    month   month    month"
+		".       .        .       .        .       .        ."
+		".       .        .       .        .       .        un"
+		"deux     trois   quatre  cinq     six     sept     huit"
+		"neuf     dix     onze    douze    treize  quatorze quinze"
+		"seize    dsept   dhuit   dneuf    vingt   vun      vdeux"
+		"vtrois   vquatre vcinq   vsix     vsept   vhuit    vneuf"
+		"trente   tun     .       .        .       .        .";
+	width: 300px;
+	height: 100%;
+}
+
+/*points evenements*/
+/*le conteneur des jours evenements*/
+#calendar .event {
+	display: flex;
+	position: relative;
+	cursor: pointer;
+	/*elargit les bords du p a toute la case pour le cursor:pointer*/
+	/*mais du coup le texte est decentre*/
+	margin: 0;
+	/*recentrer le texte*/
+	align-items: center;
+	justify-content: center;
+}
+#calendar .event * {
+	cursor: pointer;
+}
+/*le conteneur de points*/
+#calendar .dot {
+	position: absolute;
+	bottom: 4px;
+	left: 50%;
+	transform: translate(-50%);
+	display: flex;
+	justify-content: center;
+}
+/*le dessin des points*/
+#calendar .dot span {
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	margin: 0px 2px;
+}
+#calendar .dot .red {
+	background-color: red;
+}
+#calendar .dot .blue {
+	background-color: blue;
+}
+#calendar .dot .green {
+	background-color: green;
+}
+
+/*fenêtre d'evenement*/
+/*formatage de la fenêtre*/
+#calendar .info {
+	position: fixed;
+	display: none;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	min-height: 100vh;
+	background-color: rgba(10, 10, 10, 0.9);
+	cursor: default;
+	z-index: 4;
+}
+/*croix pour fermer*/
+#calendar .info:before {
+	content: "";
+	position: absolute;
+	top: 20px;
+	left: 32px;
+	width: 2px;
+	height: 26px;
+	background-color: white;
+	transform: rotate(45deg);
+}
+#calendar .info:after {
+	content: "";
+	position: absolute;
+	top: 32px;
+	left: 20px;
+	width: 26px;
+	height: 2px;
+	background-color: white;
+	transform: rotate(45deg);
+}
+/*ecritures en blanc*/
+#calendar .info * {
+	color: rgb(200, 200, 200);
+	cursor: default;
+}
+/*apparition de la fenetre au clique*/
+#calendar .event:focus .info {
+	display: grid;
+}
+#calendar .event .info:focus {
+	display: none;
+}
+
+/*fleches pour changer de mois*/
+#calendar input {
+	display: none;
+}
+#calendar label {
+	position: absolute;
+	top: 13px;
+	width: 15px;
+	height: 15px;
+	transform: rotate(45deg);
+}
+/*position et dessin des fleches*/
+#calendar #one + label {
+	left: 15px;
+	z-index: 2;
+	border-left: 2px solid grey;
+	border-bottom: 2px solid grey;
+}
+#calendar #two + label {
+	right: 15px;
+	z-index: 3;
+	border-right: 2px solid grey;
+	border-top: 2px solid grey;
+}
+#calendar #three + label {
+	right: 15px;
+	z-index: 2;
+	border-right: 2px solid grey;
+	border-top: 2px solid grey;
+}
+/*l'action des fleches*/
+#calendar #two:checked ~ #days ~ #calendarSlide {
+	left: -300px;
+}
+#calendar #three:checked ~ #days ~ #calendarSlide {
+	left: -600px;
+}
+/*quand la one est checked elle est hidden*/
+#calendar #one:checked + label {
+	display: none;
+}
+/*quand la three est checked elle est hidden
+et la one aussi
+et la two est left*/
+#calendar #three:checked + label {
+	display: none;
+}
+#calendar #three:checked ~ #one + label {
+	display: none;
+}
+#calendar #three:checked ~ #two + label {
+	right: auto;
+	left: 15px;
+	transform: rotate(-135deg);
+}
+/*quand la two est checked elle est z-index:1*/
+#calendar #two:checked + label {
+	z-index: 1;
+}
