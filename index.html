@@ -96,25 +96,23 @@
 			const search = document.getElementById("search");
 			let pokesearch = search.value;
 			search.addEventListener("keyup", compareSearch)
-			const pokedex = []
+			const data = []
 			const pokePrint = []
 
 			fetch("pokedex.json")
-				.then(tab => tab.json())
-		//	.then(pokelist => pokedex.push(...pokelist.pokemon));
-				.then(pokelist => pokelist.pokemon.forEach(e => pokedex.push(e)))
-				.then(console.log(pokedex))
+				.then(i => i.json())
+				.then(i => i.pokemon.forEach(e => data.push(e)))
+				.then(console.log(data))
 
 			function compareSearch() {
-		//	const pokesearch = new RegExp(search.value, 'gi')
 				pokesearch = search.value.toLowerCase()
 				if(pokesearch !== '')
-		//		return pokedex.filter(pokemon => {
-		//		return pokemon.name.match(pokesearch)
-					pokedex.forEach(pokemon => {
-						if(pokemon.name.toLowerCase().includes(pokesearch)
-		//			|| pokemon.type.find(e=>e.toLowerCase().includes(pokesearch)))
-						||(pokemon.type.join().toLowerCase().includes(pokesearch)))
+					data.forEach(pokemon => {
+						if(Object.keys(pokemon).forEach(e => e.toLowerCase().includes(pokesearch))
+					//	||(pokemon.type.join().toLowerCase().includes(pokesearch))
+							)
+							console.log(pokemon)
+							console.log("-")
 							pokePrint.push(pokemon)
 					})
 				printSelection(pokePrint);

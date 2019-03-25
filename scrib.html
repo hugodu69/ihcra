@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<meta name="description" content="description du site web">
+		<meta name="keywords" content="truc, bidule, chouette">
+<!--
+		<link href="./style.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="script.js" defer></script>
+-->
+	</head>
+	<body>
+
+		<div id="scribb">
+			<h1>ihcra</h1>
+			<input id="search" type="text" placeholder="recherche un theme"/>
+			<div id="liste"></div>
+		</div>
+
+		<script>
+			const list = document.getElementById("liste");
+			const search = document.getElementById("search");
+			search.addEventListener("keyup", compareSearch);
+			const data = []
+
+/*
+			const data = [{title:["test", "deux"]}]
+
+			function cloneObject(obj) {
+			    var clone = {};
+			    for(var i in obj) {
+			        if(obj[i] != null &&  typeof(obj[i])=="object")
+			            clone[i] = cloneObject(obj[i]);
+			        else
+			            clone[i] = obj[i];
+			    }
+			    return clone;
+			}
+
+			function compareSearch() {
+				let tmp = cloneObject(data[0]);
+				let print = []
+				Object.keys(data[0]).forEach(key => {
+					print.push(tmp)
+					console.log(typeof (data[0].title[0]))
+					print[0].title[0] = "fev"
+					print[0].title.pop()
+				})
+				console.log (data[0].title)
+			}
+*/
+
+			fetch("notes.json")
+				.then(i => i.json())
+				.then(i => i.notes.forEach(e => data.push(e)))
+				.then(console.log(data))
+
+			function compareSearch() {
+				let toPrint = []
+				let research = search.value.toLowerCase()
+				let regex = new RegExp(research, 'g')
+				if(search.value.toLowerCase() !== '') {
+					//parcour toutes les sections par indexAll de data
+					//et pour chacune, objet, parcour les key de l'objet
+					data.forEach((section, indexAll) => Object.keys(section).forEach(key => {
+						//chaque key est un tableau de string, on parcour...
+						section[key].forEach((paragraph, index) => {
+							//in case the search pattern is found in a string
+							//replace it by itself surrounded with html balises for highlight
+							//and fill "print" with a copy of the section containing it
+							if (paragraph.includes(research)) {
+								const change = paragraph.replace(regex, "<span>" + research + "</span>")
+								const tmp = JSON.parse(JSON.stringify(data[indexAll]))
+								if (!(toPrint.some(e => e.title.includes(section.title[0]))))
+									toPrint.push(tmp)
+								toPrint[toPrint.length - 1][key].splice(index, 1, change)
+							}
+						})
+					}))
+					console.log (toPrint)
+					printSelection(toPrint)
+				}
+			}
+
+			function printSelection(section) {
+				let html = ''
+				for(let i of section) {
+					html = html +
+					`<div>
+						<h1 id="title">${i.title[0]}</p>
+						<p id="content">${i.content[0]}</p>
+						<p id="keywords">${i.keywords[0]}</p>
+					</div>`
+				}
+				list.innerHTML = html
+			}
+
+		</script>
+
+</body>
+</html>
