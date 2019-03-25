@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title></title>
-		<meta name="description" content="description du site web">
-		<meta name="keywords" content="truc, bidule, chouette">
-<!--
-		<link href="./style.css" type="text/css" rel="stylesheet">
-		<script type="text/javascript" src="script.js" defer></script>
--->
-	<style>
-		#red {background-color: red;}
-	</style>
+		<title>actualites | IHCRA</title>
+		<base href="../assets/">
+		<link href="../style.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="../script.js" defer></script>
+		<style>
+			#red {background-color: red;}
+		</style>
 	</head>
-	<body>
 
-		<div id="scribb">
-			<h1>ihcra</h1>
+	<body class="column">
+
+		<div id="title" class="column">
+			<a href="../index.html">archi</a>
+			<h2>[ <span>SE LIT EN MIROIR</span> ]</h2>
+		</div>
+
+		<div id="scrib" class="column">
 			<input id="search" type="text" placeholder="recherche un theme"/ autofocus>
-			<div id="liste"></div>
+			<div id="liste" class="column"></div>
 		</div>
 
 		<script>
@@ -28,7 +30,7 @@
 			search.addEventListener("keyup", compareSearch);
 			const data = []
 
-			fetch("notes.json")
+			fetch("../notes.json")
 				.then(i => i.json())
 				.then(i => i.notes.forEach(e => data.push(e)))
 				.then(console.log(data))
@@ -68,13 +70,13 @@
 			function printSelection(affich) {
 				let html = ''
 				for(let i of affich) {
-					html += `<div><h1 id="title">${i.title[0]}</h1>`
+					html += `<div id="article"><h2 id="title">${i.title[0]}</h2>`
 					if (i.title.length > 1)
 						for(let j = 1; j < i.title.length; j++)
 							html += `<div><h2 id="subtitle">${i.title[j]}</h2>`
 					for(j = 0; j < i.content.length; j++)
 						html += `<p id="content">${i.content[j]}</p>`
-					html += "<div>"
+					html += "<div id='keybox' class='row right'>"
 					for(j = 0; j < i.keywords.length; j++)
 						html += `<p id="keywords">${i.keywords[j]}</p>`
 					html += "</div></div>"

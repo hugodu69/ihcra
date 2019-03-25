@@ -1,3 +1,9 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* general                                                   */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -8,7 +14,14 @@ body {
 }
 
 
-/*formatage general de toutes les sections en flex*/
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* formatage general de toutes les sections en flex          */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 .column {
 	display: flex;
 	flex-direction: column;
@@ -23,9 +36,26 @@ body {
 .row * {
 	margin: auto;
 }
+.right {
+	justify-content: flex-end;
+}
+.left {
+	justify-content: flex-start;
+}
+.left *, .right * {
+	margin-left: 3px;
+	margin-right: 3px;
+}
 
 
-/*formatage du texte*/
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* formatage du texte                                        */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 h1, h2, h3, p, span, a {
 	font-family: sans-serif;
 	text-transform: uppercase;
@@ -79,7 +109,14 @@ span {
 }
 
 
-/*formatage des 4 liens*/
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* formatage des 4 liens                                     */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #links {
 	margin-top: 160px;
 }
@@ -95,29 +132,78 @@ span {
 	letter-spacing: 0.66em;
 	margin-right: -0.66em;
 }
+#links a:nth-child(4) {
+	letter-spacing: 1.02em;
+	margin-right: -1.02em;
+}
 #links a:hover {
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	color: white;
 }
-#links a:nth-child(4) {
+#links a:nth-child(5) {
 	letter-spacing: 1.3em;
 	margin-right: -1.3em;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	color: white;
 }
-#links a:nth-child(4):hover {
+#links a:nth-child(5):hover {
 	text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
 	color: white;
 }
 
 
-/*formatage du footer*/
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* formatage du footer                                       */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #footer {
 	margin-top: 200px;
 	margin-bottom: 40px;
 }
 
-/*le calendrier*/
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* la page d'archive recherche                               */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#scrib {
+	margin-top: 100px;
+	margin-bottom: 40px;
+	max-width: 600px;
+}
+#scrib #search {
+	margin: 0px 20px;
+	background-color: white;
+	padding: 3px;
+	border: 1px solid rgba(100, 100, 100, 0.4);
+}
+#scrib #article {
+	margin-top: 50px;
+}
+#scrib #keybox {
+	background-color: rgba(100, 100, 100, 0.2);
+}
+#scrib #keywords {
+	padding: 0px 10px;
+}
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* le calendrier                                             */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 /*les grids areas*/
 #calendar .lun      {grid-area: lun;}
 #calendar .mar      {grid-area: mar;}
@@ -338,6 +424,7 @@ span {
 	width: 15px;
 	height: 15px;
 	transform: rotate(45deg);
+	cursor: pointer;
 }
 /*position et dessin des fleches*/
 #calendar #one + label {
