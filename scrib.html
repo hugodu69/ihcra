@@ -10,6 +10,9 @@
 		<link href="./style.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="script.js" defer></script>
 -->
+	<style>
+		#red {background-color: red;}
+	</style>
 	</head>
 	<body>
 
@@ -26,30 +29,30 @@
 			const data = []
 
 /*
-			const data = [{title:["test", "deux"]}]
-
-			function cloneObject(obj) {
-			    var clone = {};
-			    for(var i in obj) {
-			        if(obj[i] != null &&  typeof(obj[i])=="object")
-			            clone[i] = cloneObject(obj[i]);
-			        else
-			            clone[i] = obj[i];
-			    }
-			    return clone;
-			}
-
-			function compareSearch() {
-				let tmp = cloneObject(data[0]);
-				let print = []
-				Object.keys(data[0]).forEach(key => {
-					print.push(tmp)
-					console.log(typeof (data[0].title[0]))
-					print[0].title[0] = "fev"
-					print[0].title.pop()
-				})
-				console.log (data[0].title)
-			}
+//			const data = [{title:["test", "deux"]}]
+//
+//			function cloneObject(obj) {
+//			    var clone = {};
+//			    for(var i in obj) {
+//			        if(obj[i] != null &&  typeof(obj[i])=="object")
+//			            clone[i] = cloneObject(obj[i]);
+//			        else
+//			            clone[i] = obj[i];
+//			    }
+//			    return clone;
+//			}
+//
+//			function compareSearch() {
+//				let tmp = cloneObject(data[0]);
+//				let print = []
+//				Object.keys(data[0]).forEach(key => {
+//					print.push(tmp)
+//					console.log(typeof (data[0].title[0]))
+//					print[0].title[0] = "fev"
+//					print[0].title.pop()
+//				})
+//				console.log (data[0].title)
+//			}
 */
 
 			fetch("notes.json")
@@ -61,18 +64,20 @@
 				let toPrint = []
 				let research = search.value.toLowerCase()
 				let regex = new RegExp(research, 'g')
+				let become = "<span id='red'>" + research + "</span>"
 				if(search.value.toLowerCase() !== '') {
-					//parcour toutes les sections par indexAll de data
-					//et pour chacune, objet, parcour les key de l'objet
+					// parcour toutes les sections par indexAll de data
+					// et pour chacune, objet, parcour les key de l'objet
 					data.forEach((section, indexAll) => Object.keys(section).forEach(key => {
-						//chaque key est un tableau de string, on parcour...
+						// chaque key est un tableau de string, on parcour...
 						section[key].forEach((paragraph, index) => {
-							//in case the search pattern is found in a string
-							//replace it by itself surrounded with html balises for highlight
-							//and fill "print" with a copy of the section containing it
+							// in case the search pattern is found in a string
+							// replace it by itself surrounded with html balises for highlight
+							// and fill "print" with a copy of the section containing it
 							if (paragraph.includes(research)) {
-								const change = paragraph.replace(regex, "<span>" + research + "</span>")
+								const change = paragraph.replace(regex, become)
 								const tmp = JSON.parse(JSON.stringify(data[indexAll]))
+								// si cette section existe deja on ne la rajoute pas a toPrint
 								if (!(toPrint.some(e => e.title.includes(section.title[0]))))
 									toPrint.push(tmp)
 								toPrint[toPrint.length - 1][key].splice(index, 1, change)
@@ -84,15 +89,19 @@
 				}
 			}
 
-			function printSelection(section) {
+			function printSelection(affich) {
 				let html = ''
-				for(let i of section) {
-					html = html +
-					`<div>
-						<h1 id="title">${i.title[0]}</p>
-						<p id="content">${i.content[0]}</p>
-						<p id="keywords">${i.keywords[0]}</p>
-					</div>`
+				for(let i of affich) {
+					html += `<div><h1 id="title">${i.title[0]}</h1>`
+					if (i.title.length > 1)
+						for(let j = 1; j < i.title.length; j++)
+							html += `<div><h2 id="subtitle">${i.title[j]}</h2>`
+					for(j = 0; j < i.content.length; j++)
+						html += `<p id="content">${i.content[j]}</p>`
+					html += "<div>"
+					for(j = 0; j < i.keywords.length; j++)
+						html += `<p id="keywords">${i.keywords[j]}</p>`
+					html += "</div></div>"
 				}
 				list.innerHTML = html
 			}
