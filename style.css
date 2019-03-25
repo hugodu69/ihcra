@@ -85,11 +85,6 @@ p {
 	font-size: 11px;
 	line-height: 2;
 }
-span {
-	font-size: 13px;
-	letter-spacing: 1.5px;
-	vertical-align: 7%;
-}
 #links a {
 	font-size: 13px;
 	font-weight: bold;
@@ -99,6 +94,14 @@ span {
 	font-size: 13px;
 	color: rgb(180, 180, 180);
 	line-height: 1.5;
+}
+span#minor {
+	font-size: 13px;
+	letter-spacing: 1.5px;
+	vertical-align: 7%;
+}
+span#light {
+	background-color: red;
 }
 
 
@@ -185,13 +188,15 @@ span {
 	padding: 3px;
 	border: 1px solid rgba(100, 100, 100, 0.4);
 }
-#scrib #article {
+#scrib #liste #article {
 	margin-top: 50px;
 }
-#scrib #keybox {
+#scrib #liste #article #keybox {
 	background-color: rgba(100, 100, 100, 0.2);
+	/*ajout align-self:center pour safari qui sinon etend width a 100% de elem parent*/
+	align-self: center;
 }
-#scrib #keywords {
+#scrib #liste #article #keybox #keywords {
 	padding: 0px 10px;
 }
 

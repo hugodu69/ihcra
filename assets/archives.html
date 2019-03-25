@@ -6,16 +6,13 @@
 		<title>actualites | IHCRA</title>
 		<base href="../assets/">
 		<link href="../style.css" type="text/css" rel="stylesheet">
-		<style>
-			#red {background-color: red;}
-		</style>
 	</head>
 
 	<body class="column">
 
 		<div id="title" class="column">
 			<a href="../index.html">archi</a>
-			<h2>[ <span>SE LIT EN MIROIR</span> ]</h2>
+			<h2>[ <span id="minor">SE LIT EN MIROIR</span> ]</h2>
 		</div>
 
 		<div id="scrib" class="column">
@@ -25,7 +22,7 @@
 
 		<script>
 			const list = document.getElementById("liste");
-			const search = document.getElementById("search");
+			var search = document.getElementById("search");
 			search.addEventListener("keyup", compareSearch);
 			const data = []
 
@@ -39,7 +36,7 @@
 				let toPrint = []
 				let research = search.value.toLowerCase()
 				let regex = new RegExp(research, 'g')
-				let become = "<span id='red'>" + research + "</span>"
+				let become = "<span id='light'>" + research + "</span>"
 				/* si rien n'est en recherche on affiche tout */
 				printSelection(data)
 				/* mais si on cherche qqch on affiche le resultat */
@@ -69,13 +66,13 @@
 			function printSelection(affich) {
 				let html = ''
 				for(let i of affich) {
-					html += "<div id='article'><h2 id='title'>" + i.title[0] + "</h2>"
+					html += "<div id='article' class='column'><h2 id='title'>" + i.title[0] + "</h2>"
 					if (i.title.length > 1)
 						for(let j = 1; j < i.title.length; j++)
 							html += "<div><h2 id='subtitle'>" + i.title[j] + "</h2>"
 					for(j = 0; j < i.content.length; j++)
 						html += "<p id='content'>" + i.content[j] + "</p>"
-					html += "<div id='keybox' class='row right'>"
+					html += "<div id='keybox' class='row'>"
 					for(j = 0; j < i.keywords.length; j++)
 						html += "<p id='keywords'>" + i.keywords[j] + "</p>"
 					html += "</div></div>"
