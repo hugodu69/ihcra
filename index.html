@@ -28,7 +28,7 @@
 			search.addEventListener("keyup", compareSearch);
 			const data = []
 
-			window.onload = fetch("notes.json")
+			fetch("notes.json")
 				.then(i => i.json())
 				.then(i => i.notes.forEach(e => data.push(e)))
 				.then(console.log(data))
