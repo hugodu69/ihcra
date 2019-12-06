@@ -1,0 +1,58 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* formatage de l'animation giif                             */
+/*                                                           */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+.column {
+	display: flex;
+	flex-direction: column;
+}
+.column * {
+	margin: auto;
+}
+body {
+	width: 100vw;
+	height: 100vh;
+}
+#giif {
+}
+#giif a {
+	font-family: sans-serif;
+	text-transform: uppercase;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	cursor: default;
+	font-size: 300px;
+	font-weight: bold;
+	transform: rotateY(0deg);
+	animation: 5s flip infinite;
+
+/*
+**	transform: rotateY(181deg);
+**	transition: transform 1s;
+*/
+
+}
+
+@keyframes flip {
+      0%   {transform: rotateY(0deg);}
+      30%   {transform: rotateY(0deg);}
+      50%   {transform: rotateY(180deg);}
+      80%   {transform: rotateY(180deg);}
+      100%   {transform: rotateY(0deg);}
+}
+
+
+/*
+**#giif a:hover {
+**	transform: rotateY(0deg);
+**}
+*/
+
