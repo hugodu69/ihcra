@@ -21,12 +21,21 @@ body {
 	flex-direction: row;
 	margin: auto;
 	width: 800px;
+}
+#subcontainer {
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+	width: 800px;
 	transform: rotateY(0deg);
 	animation: 5s bigflip infinite linear;
 }
 @keyframes bigflip {
       0%   {transform: rotateY(0deg);}
       100%   {transform: rotateY(360deg);}
+}
+#container:focus #links {
+	display: none;
 }
 p {
 	margin: auto;

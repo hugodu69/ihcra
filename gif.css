@@ -17,6 +17,15 @@ body {
 	display: flex;
 	flex-direction: column;
 }
+#container {
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+	width: 800px;
+}
+#container:focus #links {
+	display: none;
+}
 p {
 	margin: auto;
 	font-family: arial sans-serif;

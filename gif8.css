@@ -22,6 +22,9 @@ body {
 	margin: auto;
 	width: 800px;
 }
+#container:focus #links {
+	display: none;
+}
 p {
 	margin: auto;
 	font-family: arial sans-serif;
