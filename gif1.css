@@ -9,9 +9,16 @@ body {
 	width: 100vw;
 	height: 100vh;
 }
+#links {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: flex;
+	flex-direction: column;
+}
 p {
 	margin: auto;
-	font-family: sans-serif;
+	font-family: arial sans-serif;
 	text-transform: uppercase;
 	text-align: center;
 	text-decoration: none;
